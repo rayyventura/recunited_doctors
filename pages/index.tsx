@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Doctor from '../src/components/Doctor';
+import Doctor from '../components/Doctor';
 
 export interface Doctors {
   id: string;
