@@ -8,7 +8,8 @@ export default async function handler(
   try {
     const searchData = req.body.filter;
     if (searchData === '') {
-      return res.status(200).send([]);
+      const doctors = await prisma.doctor.findMany({ take: 5 });
+      return res.status(200).send(doctors);
     }
     const doctors = await prisma.doctor.findMany({
       where: {
