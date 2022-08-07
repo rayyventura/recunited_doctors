@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import type { NextPage } from 'next';
-import Head from 'next/head';
 
 import Link from 'next/link';
 import axios from 'axios';
@@ -19,22 +17,16 @@ export interface Doctors {
 }
 export default function Home() {
   const [doctors, setDoctors] = useState<Doctors[]>();
+  const [inputValue, setInputValue] = useState<string>();
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-
   useEffect(() => {
-    getData();
+    getData('');
   }, []);
 
-  async function getData() {
-    const searchData = { filter: '' };
+  async function getData(value: string) {
+    const searchData = { filter: value };
     const doctors = await axios.post(`${baseUrl}/doctors/read`, searchData);
-    setDoctors(doctors.data);
-  }
-
-  async function handleChange(e: any) {
-    const searchData = { filter: e.target.value };
-    const doctors = await axios.post(`${baseUrl}/doctors/read`, searchData);
-
+    setInputValue(value);
     setDoctors(doctors.data);
   }
 
@@ -51,7 +43,7 @@ export default function Home() {
             className="w-full py-2 pr-3 bg-white border rounded-md shadow-sm placeholder:text-slate-400 border-slate-300 pl-9 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
             placeholder="Search for a doctor..."
             name="search"
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => getData(e.target.value)}
           />
         </label>
         <Link href="add-doctor">
@@ -61,7 +53,12 @@ export default function Home() {
       <div className="flex flex-row flex-wrap items-center justify-center gap-4">
         {doctors &&
           doctors.map((doctor) => (
-            <Doctor {...doctor} setDoctors={setDoctors} key={doctor.id} />
+            <Doctor
+              {...doctor}
+              getData={getData}
+              inputValue={inputValue}
+              key={doctor.id}
+            />
           ))}
       </div>
     </div>

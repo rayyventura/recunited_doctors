@@ -3,6 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import React from 'react';
 import Swal from 'sweetalert2';
+import { Doctors } from '../pages';
 
 export default function Doctor({
   id,
@@ -13,7 +14,8 @@ export default function Doctor({
   areaOfExpertise,
   facility,
   profileImage,
-  setDoctors,
+  getData,
+  inputValue,
 }: any) {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -26,7 +28,7 @@ export default function Doctor({
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: 'Delete',
-      denyButtonText: `Quit`,
+      denyButtonText: 'Quit',
       confirmButtonColor: '#006deb',
     }).then(async (result) => {
       if (result.isConfirmed) {
@@ -37,7 +39,7 @@ export default function Doctor({
           confirmButtonColor: '#006deb',
         });
         await axios.delete(`${baseUrl}/doctors/${id}`);
-        setDoctors([]);
+        getData(inputValue);
       } else if (result.isDenied) {
         Swal.fire({
           icon: 'info',
