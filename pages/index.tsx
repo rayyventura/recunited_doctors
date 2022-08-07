@@ -21,6 +21,16 @@ export default function Home() {
   const [doctors, setDoctors] = useState<Doctors[]>();
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
+  useEffect(() => {
+    getData();
+  }, []);
+
+  async function getData() {
+    const searchData = { filter: '' };
+    const doctors = await axios.post(`${baseUrl}/doctors/read`, searchData);
+    setDoctors(doctors.data);
+  }
+
   async function handleChange(e: any) {
     const searchData = { filter: e.target.value };
     const doctors = await axios.post(`${baseUrl}/doctors/read`, searchData);
