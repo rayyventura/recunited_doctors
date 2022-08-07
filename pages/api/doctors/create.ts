@@ -6,6 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const createData = req.body;
+  console.log(createData);
   await create(createData);
   res.status(200).send('Successfully Deleted');
 }

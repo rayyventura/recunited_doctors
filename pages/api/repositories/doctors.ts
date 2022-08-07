@@ -22,6 +22,15 @@ async function update(id: number, data: Doctors) {
   });
 }
 
+async function findUnique(id: number) {
+  const doctor = await prisma.doctor.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return doctor;
+}
+
 async function deleteDoctor(id: number) {
   await prisma.doctor.delete({
     where: {
@@ -38,4 +47,4 @@ async function create(data: Omit<Doctor, 'id'>) {
   });
 }
 
-export { update, create, deleteDoctor };
+export { update, create, deleteDoctor, findUnique };

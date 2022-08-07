@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
+import Link from 'next/link';
 import React from 'react';
 import Swal from 'sweetalert2';
 import { baseUrl } from '../utils/baseUrl';
@@ -45,6 +46,7 @@ export default function Doctor({
       }
     });
   }
+
   return (
     <div className="w-56 h-56 mb-40 bg-white rounded-md cursor-pointer">
       <img
@@ -67,7 +69,9 @@ export default function Doctor({
           onClick={() => handleDelete()}
         />
 
-        <img src="update.png" alt="trash" className="w-8 h-8 " />
+        <Link href={`/doctors/${id}`}>
+          <img src="update.png" alt="trash" className="w-8 h-8 " />
+        </Link>
       </div>
     </div>
   );

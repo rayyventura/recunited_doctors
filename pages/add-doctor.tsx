@@ -37,8 +37,9 @@ export default function AddDoctor() {
       console.log(error);
     }
   }
-  async function handleChange(e: any) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  async function handleChange(name: string, value: string) {
+    setFormData({ ...formData, [name]: value });
   }
   return (
     <div className="flex flex-col items-center justify-start min-h-screen space-y-5 bg-gradient-to-r from-cyan-500 via-sky-200 to-cyan-500">
@@ -50,6 +51,7 @@ export default function AddDoctor() {
         />
       </Link>
       <Form
+        title="Add a New Doctor"
         formData={formData}
         setFormData={setFormData}
         handleChange={handleChange}
