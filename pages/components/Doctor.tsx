@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from 'axios';
 import React from 'react';
-import { Doctors } from '..';
+import Swal from 'sweetalert2';
+import { baseUrl } from '../utils/baseUrl';
 
 export default function Doctor({
   id,
@@ -11,9 +13,40 @@ export default function Doctor({
   areaOfExpertise,
   facility,
   profileImage,
-}: Doctors) {
+  setDoctors,
+}: any) {
+  async function handleDelete() {
+    Swal.fire({
+      icon: 'question',
+      text: 'Do you want to delete the doctor?',
+      background: '#dafde1',
+      color: '#010118',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Quit`,
+      confirmButtonColor: '#006deb',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Deleted!',
+          text: 'Successfully',
+          confirmButtonColor: '#006deb',
+        });
+        await axios.delete(`${baseUrl}/doctors/${id}`);
+        setDoctors([]);
+      } else if (result.isDenied) {
+        Swal.fire({
+          icon: 'info',
+          title: 'Changes were not saved',
+          confirmButtonColor: '#006deb',
+        });
+      }
+    });
+  }
   return (
-    <div className="w-56 h-56 bg-white rounded-md cursor-pointer ">
+    <div className="w-56 h-56 mb-40 bg-white rounded-md cursor-pointer">
       <img
         src={profileImage}
         alt="profile"
@@ -26,6 +59,16 @@ export default function Doctor({
         {areaOfExpertise}, {city}
       </p>
       <p className="text-sky-900 opacity-80 hover:opacity-100">{email}</p>
+      <div className="flex flex-row">
+        <img
+          src="trash.png"
+          alt="trash"
+          className="w-8 h-8 "
+          onClick={() => handleDelete()}
+        />
+
+        <img src="update.png" alt="trash" className="w-8 h-8 " />
+      </div>
     </div>
   );
 }
