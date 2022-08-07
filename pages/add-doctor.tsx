@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import Link from 'next/link';
-import Form from './components/Forms';
+import Form from '../src/components/Forms';
 
 export default function AddDoctor() {
   const initial = {
