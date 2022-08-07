@@ -24,7 +24,7 @@ export default function AddDoctor() {
     e.preventDefault();
 
     try {
-      await axios.post(`${baseUrl}/api/doctors/create`, formData);
+      await axios.post(`${baseUrl}/doctors/create`, formData);
       setFormData({ ...initial });
       Swal.fire({
         icon: 'success',

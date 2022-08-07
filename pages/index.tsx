@@ -23,7 +23,7 @@ export default function Home() {
   console.log(baseUrl);
   async function handleChange(e: any) {
     const searchData = { filter: e.target.value };
-    const doctors = await axios.post(`${baseUrl}/api/doctors/read`, searchData);
+    const doctors = await axios.post(`${baseUrl}/doctors/read`, searchData);
 
     setDoctors(doctors.data);
   }

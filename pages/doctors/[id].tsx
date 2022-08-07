@@ -16,7 +16,7 @@ export default function UpdadeDoctor() {
   const [formData, setFormData] = useState<any>();
 
   async function getData() {
-    const doctor = await axios.get(`${baseUrl}/api/doctors/${id}`);
+    const doctor = await axios.get(`${baseUrl}/doctors/${id}`);
     setFormData(doctor.data);
   }
 
