@@ -20,7 +20,7 @@ export interface Doctors {
 export default function Home() {
   const [doctors, setDoctors] = useState<Doctors[]>();
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  console.log(baseUrl);
+
   async function handleChange(e: any) {
     const searchData = { filter: e.target.value };
     const doctors = await axios.post(`${baseUrl}/doctors/read`, searchData);
