@@ -6,7 +6,6 @@ import Link from 'next/link';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Doctor from './components/Doctor';
-import { baseUrl } from './utils/baseUrl';
 
 export interface Doctors {
   id: string;
@@ -20,10 +19,11 @@ export interface Doctors {
 }
 export default function Home() {
   const [doctors, setDoctors] = useState<Doctors[]>();
-
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  console.log(baseUrl);
   async function handleChange(e: any) {
     const searchData = { filter: e.target.value };
-    const doctors = await axios.post(`${baseUrl}/doctors/read`, searchData);
+    const doctors = await axios.post(`${baseUrl}/api/doctors/read`, searchData);
 
     setDoctors(doctors.data);
   }

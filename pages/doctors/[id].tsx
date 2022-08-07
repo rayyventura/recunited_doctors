@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Form from '../components/Forms';
-import { baseUrl } from '../utils/baseUrl';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import Link from 'next/link';
@@ -13,10 +12,11 @@ export default function UpdadeDoctor() {
 
   const router = useRouter();
   const { id } = router.query;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   const [formData, setFormData] = useState<any>();
 
   async function getData() {
-    const doctor = await axios.get(`${baseUrl}/doctors/${id}`);
+    const doctor = await axios.get(`${baseUrl}/api/doctors/${id}`);
     setFormData(doctor.data);
   }
 

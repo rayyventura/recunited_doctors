@@ -3,7 +3,6 @@ import axios from 'axios';
 import Link from 'next/link';
 import React from 'react';
 import Swal from 'sweetalert2';
-import { baseUrl } from '../utils/baseUrl';
 
 export default function Doctor({
   id,
@@ -16,6 +15,8 @@ export default function Doctor({
   profileImage,
   setDoctors,
 }: any) {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
   async function handleDelete() {
     Swal.fire({
       icon: 'question',

@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
 import React, { useState } from 'react';
-import { baseUrl } from './utils/baseUrl';
 import Swal from 'sweetalert2';
 import Link from 'next/link';
 import Form from './components/Forms';
@@ -19,12 +18,13 @@ export default function AddDoctor() {
   const [formData, setFormData] = useState({
     ...initial,
   });
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
   async function handleSubmit(e: any) {
     e.preventDefault();
 
     try {
-      await axios.post(`${baseUrl}/doctors/create`, formData);
+      await axios.post(`${baseUrl}/api/doctors/create`, formData);
       setFormData({ ...initial });
       Swal.fire({
         icon: 'success',
