@@ -26,7 +26,6 @@ export default function Doctor({
       background: '#dafde1',
       color: '#010118',
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: 'Delete',
       denyButtonText: 'Quit',
       confirmButtonColor: '#006deb',
