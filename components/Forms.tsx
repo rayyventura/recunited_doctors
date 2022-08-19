@@ -29,6 +29,7 @@ export default function Form({
           name="firstName"
           value={formData.firstName}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          required
         />
       </label>
       <label className="relative block w-8/12">
@@ -39,6 +40,7 @@ export default function Form({
           name="lastName"
           value={formData.lastName}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          required
         />
       </label>
       <label className="relative block w-8/12">
@@ -49,6 +51,7 @@ export default function Form({
           name="email"
           value={formData.email}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          required
         />
       </label>
       <label className="relative block w-8/12">
@@ -59,6 +62,7 @@ export default function Form({
           name="city"
           value={formData.city}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          required
         />
       </label>
       <Autocomplete
@@ -89,6 +93,7 @@ export default function Form({
           name="facility"
           value={formData.facility}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          required
         />
       </label>
       <label className="relative block w-8/12">
@@ -99,6 +104,7 @@ export default function Form({
           name="profileImage"
           value={formData.profileImage}
           onChange={(e) => handleChange(e.target.name, e.target.value)}
+          required
         />
       </label>
       <button
